@@ -1,5 +1,8 @@
 WHITESPACE = _{ " " | "\t" | NEWLINE }
 COMMENT = _{ ("//" ~ (!NEWLINE ~ ANY)* ~ NEWLINE) | "/*" ~ (!"*/" ~ ANY)* ~ "*/" }
+sep = _{ "_" | "-"}
+identifier = @{ ASCII_ALPHA+ ~ (sep | ASCII_ALPHA | ASCII_DIGIT)* }
 number = @{ ASCII_DIGIT+ }
-expr = { number }
-file = { SOI ~ expr+ ~ EOI }
+expr = { number | identifier }
+stmt = { identifier ~ "=" ~ expr ~ ";"}
+file = { SOI ~ stmt+ ~ EOI }

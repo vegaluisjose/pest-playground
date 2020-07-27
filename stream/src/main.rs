@@ -15,15 +15,37 @@ impl StreamParser {
         Ok(())
     }
 
+    fn identifier(input: Node) -> Result<Id> {
+        Ok(input.as_str().to_string())
+    }
+
+    fn number(input: Node) -> Result<i64> {
+        Ok(input.as_str().parse::<i64>().unwrap())
+    }
+
     fn expr(input: Node) -> Result<Expr> {
-        Ok(Expr::Const(input.as_str().parse::<i64>().unwrap()))
+        Ok(match_nodes!(
+            input.into_children();
+            [number(n)] => Expr::Const(n),
+            [identifier(n)] => Expr::Ref(n),
+        ))
+    }
+
+    fn stmt(input: Node) -> Result<Stmt> {
+        Ok(match_nodes!(
+            input.into_children();
+            [identifier(id), expr(e)] => Stmt {
+                id,
+                expr: e,
+            }
+        ))
     }
 
     fn file(input: Node) -> Result<Prog> {
         Ok(match_nodes!(
             input.into_children();
-            [expr(e).., _] => Prog {
-                body: e.collect(),
+            [stmt(s).., _] => Prog {
+                body: s.collect(),
             }
         ))
     }
