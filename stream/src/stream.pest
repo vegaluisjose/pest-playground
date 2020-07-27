@@ -1,10 +1,5 @@
 WHITESPACE = _{ " " | "\t" | NEWLINE }
 COMMENT = _{ ("//" ~ (!NEWLINE ~ ANY)* ~ NEWLINE) | "/*" ~ (!"*/" ~ ANY)* ~ "*/" }
-plus = { "+" }
-minus = { "-" }
-times = { "*" }
-operator = _{ plus | minus | times }
 number = { ASCII_DIGIT+ }
-expr = { term ~ (operator ~ term)* }
-term = { number | "(" ~ expr ~ ")" }
-calculation = { SOI ~ expr ~ EOI }
+expr = { number }
+file = { SOI ~ expr ~ EOI }
