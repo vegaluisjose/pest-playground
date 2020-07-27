@@ -1,2 +1,2 @@
 [workspace]
-members = ["csv"]
+members = ["csv", "stream"]

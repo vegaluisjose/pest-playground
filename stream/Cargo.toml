@@ -1,0 +1,11 @@
+[package]
+name = "stream"
+version = "0.1.0"
+authors = ["Luis Vega <vegaluisjose@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+pest = "2.0"
+pest_derive = "2.0"
+pest_consume = "1.0.5"
+lazy_static = "1.4.0"
