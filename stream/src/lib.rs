@@ -1,4 +1,5 @@
 pub mod ast;
+pub mod parser;
 
 use std::fs::File;
 use std::io::prelude::*;

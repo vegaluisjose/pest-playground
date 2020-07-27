@@ -1,9 +1,19 @@
+use std::rc::Rc;
+
 pub type Id = String;
+
+#[derive(Clone, Debug)]
+pub enum Op {
+    Add,
+    Sub,
+    Mul,
+}
 
 #[derive(Clone, Debug)]
 pub enum Expr {
     Ref(Id),
     Const(i64),
+    BinOp(Op, Rc<Expr>, Rc<Expr>),
 }
 
 #[derive(Clone, Debug)]

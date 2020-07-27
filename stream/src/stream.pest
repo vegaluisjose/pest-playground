@@ -3,6 +3,11 @@ COMMENT = _{ ("//" ~ (!NEWLINE ~ ANY)* ~ NEWLINE) | "/*" ~ (!"*/" ~ ANY)* ~ "*/"
 sep = _{ "_" | "-"}
 identifier = @{ ASCII_ALPHA+ ~ (sep | ASCII_ALPHA | ASCII_DIGIT)* }
 number = @{ ASCII_DIGIT+ }
-expr = { number | identifier }
+plus = { "+" }
+minus = { "-" }
+times = { "*" }
+operator = _{ plus | minus | times }
+term = { number | identifier }
+expr = { term ~ (operator ~ term)* }
 stmt = { identifier ~ "=" ~ expr ~ ";"}
 file = { SOI ~ stmt+ ~ EOI }
