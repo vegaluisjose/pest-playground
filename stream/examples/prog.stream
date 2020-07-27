@@ -1,0 +1,8 @@
+a = 1;
+b = 2;
+c = a + 4;
+d = 4 * 4; // this is a comment
+e = d - c;
+/* this is a block comment
+f = d - c;
+*/

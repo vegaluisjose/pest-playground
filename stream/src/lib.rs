@@ -1,4 +1,5 @@
 pub mod ast;
+pub mod display;
 pub mod parser;
 
 use std::fs::File;
