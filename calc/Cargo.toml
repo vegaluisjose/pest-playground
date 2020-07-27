@@ -1,0 +1,10 @@
+[package]
+name = "calc"
+version = "0.1.0"
+authors = ["Luis Vega <vegaluisjose@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+pest = "2.0"
+pest_derive = "2.0"
+float-cmp = "0.4.0"
