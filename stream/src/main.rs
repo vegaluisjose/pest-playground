@@ -1,5 +1,6 @@
 use pest_consume::{match_nodes, Error, Parser};
 use stream::ast::*;
+use stream::read_to_string;
 
 type Result<T> = std::result::Result<T, Error<Rule>>;
 type Node<'i> = pest_consume::Node<'i, Rule, ()>;
@@ -35,6 +36,7 @@ fn parse_file(input_str: &str) -> Result<Prog> {
 }
 
 fn main() -> Result<()> {
-    println!("{:?}", parse_file("1")?);
+    let prog = read_to_string("examples/prog_0.stream");
+    println!("{:?}", parse_file(&prog)?);
     Ok(())
 }

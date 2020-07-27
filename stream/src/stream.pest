@@ -1,5 +1,5 @@
 WHITESPACE = _{ " " | "\t" | NEWLINE }
 COMMENT = _{ ("//" ~ (!NEWLINE ~ ANY)* ~ NEWLINE) | "/*" ~ (!"*/" ~ ANY)* ~ "*/" }
-number = { ASCII_DIGIT+ }
+number = @{ ASCII_DIGIT+ }
 expr = { number }
-file = { SOI ~ expr ~ EOI }
+file = { SOI ~ expr+ ~ EOI }
